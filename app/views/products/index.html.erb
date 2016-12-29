@@ -1,7 +1,43 @@
 <h1>Shopping Cart</h1>
-
 <div ng-app='app'>
   <div ng-controller='cartCtrl'>
   
-  </div>
-</div>
+    <div id="product_area">
+      <h2>Available Products</h2>
+      <div id="product_display" > 
+        <div id="{{'product'+$index}}" class="product" ng-repeat="product in products track by $index" ng-click="addToCart(product)">
+          <strong>Name: </strong> {{ product.name }} </br> <strong>Price: </strong> {{ product.price }}
+        </div>
+      </div>
+    </div> <!-- End product_area -->
+  
+    <hr>
+
+    <div id="cart_area">
+      <h2>Shopping Cart</h2>  
+      <ul id="cart_display">
+        <li ng-repeat="item in cart track by $index" class="cart_item" ng-click="removeFromCart(item)"> 
+          <span class="item-name">
+            <strong>Name: </strong> {{ item.product.name }}
+          </span>
+          <span class="item-price">
+            <strong>Price: </strong> {{ item.product.price }}
+          </span>
+          <span class="item-quantity">
+            <strong>Quantity: </strong> {{ item.quantity}}
+          </span>
+        </li>
+      </ul>
+      <div id="cart-subtotal">
+        <strong>Sub-Total: </strong> {{ cartSubtotal }}
+      </div>
+      <div id="cart-total">
+        <strong>Tax: </strong> {{ cartTax }}
+      </div>
+      <div id="cart-total">
+        <strong>Total: </strong> {{ cartTotal }}
+      </div>
+    </div> <!-- End cart_area -->
+  
+  </div> <!-- End CartCtrl -->
+</div> <!-- End ng-app -->
